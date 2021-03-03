@@ -1,0 +1,34 @@
+version: '2.2'
+services:
+  db:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database:/var/lib/mysql
+  php:
+    image: yiisoftware/yii2-php:7.4-apache
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./sites-enabled:/etc/apache2/sites-enabled:delegated
+      - ./app:/app:delegated
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
+    links:
+      - db
