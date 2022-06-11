@@ -1,7 +1,7 @@
 version: '2.2'
 services:
   db:
-    image: mariadb
+    image: mariadb:10.7.4
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
@@ -9,7 +9,7 @@ services:
     volumes:
       - ./database:/var/lib/mysql
   php:
-    image: yiisoftware/yii2-php:7.4-apache
+    image: yiisoftware/yii2-php:8.0-apache
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./sites-enabled:/etc/apache2/sites-enabled:delegated
