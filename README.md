@@ -18,4 +18,4 @@ docker-compose down
 * Restart docker-compose container (down and up)
 
 # PhpMyAdmin
-* Visit http://127.0.0.1:8080 (username: root / password: root)
+* Visit http://127.0.0.1:8080 (server:db / username:root / password:root)
