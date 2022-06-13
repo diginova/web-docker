@@ -16,7 +16,9 @@ docker-compose run php bash
 
 # Stop
 docker-compose -p web-docker-yii2 -f yii2.yml down
+
 or
+
 docker-compose -p web-docker-laravel -f laravel.yml down
 
 # Add VirtualHost
