@@ -1,7 +1,13 @@
 # Clone
 git clone https://github.com/diginova/web-docker.git
 # Run
-docker-compose up -d
+If you are installing for Yii2:
+
+docker-compose -p web-docker-yii2 -f yii2.yml up -d
+
+If you are installing for Laravel:
+
+docker-compose -p web-docker-laravel -f laravel.yml up -d
 
 (Visit: http://127.0.0.1)
 
@@ -9,7 +15,9 @@ docker-compose up -d
 docker-compose run php bash
 
 # Stop
-docker-compose down
+docker-compose -p web-docker-yii2 -f yii2.yml down
+or
+docker-compose -p web-docker-laravel -f laravel.yml down
 
 # Add VirtualHost
 * Create new directory for new virtual-host in app directory.
