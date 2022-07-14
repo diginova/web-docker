@@ -2,6 +2,7 @@ version: '2.2'
 services:
   db:
     image: mariadb:10.7.4
+    container_name: laravel-db
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
@@ -10,6 +11,7 @@ services:
       - ./database:/var/lib/mysql
   php:
     image: yiisoftware/yii2-php:8.1-apache
+    container_name: laravel-php
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./sites-enabled:/etc/apache2/sites-enabled:delegated
@@ -21,6 +23,7 @@ services:
       - db
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: laravel-phpmyadmin
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=db
