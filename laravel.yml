@@ -8,7 +8,8 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./database:/var/lib/mysql
+      - ./database:/var/lib/mysql:rw
+    user: mysql
   php:
     image: yiisoftware/yii2-php:8.1-apache
     container_name: laravel-php
