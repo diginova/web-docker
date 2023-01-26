@@ -1,5 +1,6 @@
 version: '2.2'
 services:
+
   db:
     image: mariadb:10.7.4
     container_name: yii2-db
@@ -10,18 +11,22 @@ services:
     volumes:
       - ./database:/var/lib/mysql:rw
     user: mysql
+
   php:
-    image: yiisoftware/yii2-php:8.0-apache
     container_name: yii2-php
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./sites-enabled:/etc/apache2/sites-enabled:delegated
       - ./app:/app:delegated
+    build:
+      context: ./
+      dockerfile: php.Dockerfile
     ports:
       - 80:80
       - 443:443
     links:
       - db
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: yii2-phpmyadmin
